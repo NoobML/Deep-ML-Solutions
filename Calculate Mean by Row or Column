@@ -1,0 +1,24 @@
+def calculate_matrix_mean(matrix: list[list[float]], mode: str) -> list[float]:
+    rows = len(matrix)
+    cols = len(matrix[0])
+    result = []
+
+    if mode == 'row':  
+        for row in matrix:  
+            sum_row = 0  
+            for value in row:  
+                sum_row += value  # Sum all values in the row
+            result.append(sum_row / len(row))  # Compute row mean
+        return result  
+
+    elif mode == 'column':
+        result = [0] * cols  # Initialize with zeros
+
+        for row in matrix:
+            for j in range(cols):
+                result[j] += row[j]  # Sum column-wise
+
+        for j in range(cols):
+            result[j] /= rows  # Compute column mean
+
+        return result
