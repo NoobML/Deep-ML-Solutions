@@ -1,0 +1,26 @@
+def matrixmul(a: list[list[int | float]], 
+              b: list[list[int | float]]) -> list[list[int | float]]:
+    
+    # Check if number of columns in A equals number of rows in B
+    if len(a[0]) != len(b):
+        return -1  # Invalid dimensions for multiplication
+
+    result_rows = len(a)        # Number of rows in result = rows in A
+    result_cols = len(b[0])     # Number of cols in result = cols in B
+    common_dims = len(b)        # Shared dimension (A columns = B rows)
+
+    # Manually initialize result matrix with zeros
+    result = []
+    for _ in range(result_rows):
+        row = []
+        for _ in range(result_cols):
+            row.append(0)
+        result.append(row)
+
+    # Perform matrix multiplication
+    for i in range(result_rows):        # For each row in A
+        for j in range(result_cols):    # For each column in B
+            for k in range(common_dims):  # Multiply and sum over shared dimension
+                result[i][j] += a[i][k] * b[k][j]
+
+    return result
