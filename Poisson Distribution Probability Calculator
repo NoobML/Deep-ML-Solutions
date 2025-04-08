@@ -1,0 +1,42 @@
+import math
+
+# Constant value of Euler's number (can use math.e for better precision)
+EULER_NUMBER = 2.7182818284590455
+
+def poisson_probability(k: int, lam: float) -> float:
+    """
+    Calculate the Poisson probability for a given k and lambda (λ) value.
+    
+    Parameters:
+    k (int): The number of occurrences (integer value).
+    lam (float): The rate of occurrence (λ), a positive float.
+    
+    Returns:
+    float: The Poisson probability, rounded to 5 decimal places.
+    """
+    # Calculate factorial of k
+    k_factorial = calculate_factorial(k)
+
+    # Calculate Poisson probability using the formula
+    poisson_prob = (lam ** k * EULER_NUMBER ** -lam) / k_factorial
+
+    # Return the result rounded to 5 decimal places
+    return round(poisson_prob, 5)
+
+def calculate_factorial(k: int) -> int:
+    """
+    Calculate the factorial of a number k.
+    
+    Parameters:
+    k (int): The number to calculate the factorial for (non-negative integer).
+    
+    Returns:
+    int: The factorial of k.
+    """
+    if k == 0 or k == 1:
+        return 1
+    
+    result = 1
+    for i in range(2, k + 1):
+        result *= i
+    return result
