@@ -1,0 +1,65 @@
+import numpy as np
+
+def descriptive_statistics(data):
+    data.sort() 
+    
+    # Mean calculation
+    mean = sum(data) / len(data)
+    
+    # Median calculation
+    if len(data) % 2 != 0:
+        median = data[len(data) // 2]
+    else:
+        median = (data[len(data) // 2 - 1] + data[len(data) // 2]) / 2
+    
+    # Mode calculation
+    frequency = {}
+    for num in data:
+        frequency[num] = frequency.get(num, 0) + 1
+    mode = max(frequency, key=frequency.get)
+    
+    # Variance calculation
+    squared_diff = [(x - mean)**2 for x in data]
+    variance = sum(squared_diff) / len(data)
+    
+    # Standard deviation calculation
+    standard_deviation = variance**0.5
+    
+   
+    # Calculating percentiles
+    p25 = percentile(data, 25)
+    p50 = percentile(data, 50)
+    p75 = percentile(data, 75)
+    
+    # IQR calculation
+    iqr = p75 - p25
+
+    # Return results in a dictionary
+    stats_dict = {
+        "mean": mean,
+        "median": float(median),
+        "mode": mode,
+        "variance": np.round(variance, 4),
+        "standard_deviation": np.round(standard_deviation, 4),
+        "25th_percentile": p25,
+        "50th_percentile": p50,
+        "75th_percentile": p75,
+        "interquartile_range": iqr
+    }
+
+    return stats_dict
+
+
+ # Percentile calculation
+def percentile(data, percent):
+    data.sort()
+    index = (len(data) - 1) * (percent / 100)
+    lower_index = int(index)
+    fractional_part = index - lower_index
+
+    if lower_index + 1 < len(data):
+        lower_value = data[lower_index]
+        upper_value = data[lower_index + 1]
+        return lower_value + (upper_value - lower_value) * fractional_part
+    else:
+        return data[lower_index]
