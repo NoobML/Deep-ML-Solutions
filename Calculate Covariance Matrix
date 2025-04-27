@@ -1,0 +1,16 @@
+def calculate_covariance_matrix(vectors: list[list[float]]) -> list[list[float]]:
+    # calculate mean of each feature
+    means = [sum(feature) / len(feature) for feature in vectors]
+    
+    # calculate covariance matrix
+    cov = []
+    for i in range(len(vectors)):
+        cov_row = []
+        for j in range(len(vectors)):
+            cov_ij = 0
+            for k in range(len(vectors[0])):  # iterate over observations
+                cov_ij += (vectors[i][k] - means[i]) * (vectors[j][k] - means[j])
+            cov_ij /= len(vectors[0]) - 1 # average over observations
+            cov_row.append(cov_ij)
+        cov.append(cov_row)
+    return cov
