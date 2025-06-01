@@ -1,0 +1,22 @@
+def confusion_matrix(data):
+    true_positive = 0
+    false_negative = 0
+    false_positive = 0
+    true_negative = 0
+
+    for actual, predicted in data:
+        if actual == 1 and predicted == 1:
+            true_positive += 1
+        elif actual == 1 and predicted == 0:
+            false_negative += 1
+        elif actual == 0 and predicted == 1:
+            false_positive += 1
+        else:
+            true_negative += 1
+        
+    return [[true_positive, false_negative], [false_positive, true_negative]]
+        
+
+    
+	
+	
