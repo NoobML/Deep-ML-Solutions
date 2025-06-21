@@ -1,0 +1,14 @@
+import numpy as np
+
+def accuracy_score(y_true, y_pred):
+    # Step 1: Compare true vs predicted labels
+    correct_pred = (y_true == y_pred)
+
+    # Step 2: Count how many are correct
+    count = np.sum(correct_pred)
+
+    # Step 3: Divide correct by total number of labels
+    acc = count / len(y_true)
+
+    # Step 4: Return accuracy
+    return acc
