@@ -7,3 +7,4 @@ def r_squared(y_true, y_pred):
 	R = 1 - (sum_of_squared_residuals/sum_of_squares )
 	return R
 	
+
