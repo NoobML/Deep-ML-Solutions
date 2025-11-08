@@ -1,0 +1,7 @@
+import math
+
+def softmax(scores: list[float]) -> list[float]:
+
+	exp_sum = sum(math.exp(element) for element in scores)
+	probs = [math.exp(element)/ exp_sum for element in scores]
+	return probs
